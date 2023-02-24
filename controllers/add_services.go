@@ -67,7 +67,7 @@ func (a addServices) reconcile(ctx context.Context, r *FoundationDBClusterReconc
 
 	if cluster.GetPublicIPSource() == fdbv1beta2.PublicIPSourceService {
 		for _, processGroup := range cluster.Status.ProcessGroups {
-			if processGroup.IsMarkedForRemoval() {
+			if processGroup.IsMarkedForRemoval() && processGroup.IsExcluded() {
 				continue
 			}
 
